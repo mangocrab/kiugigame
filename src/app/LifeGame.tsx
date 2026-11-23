@@ -41,7 +41,6 @@ function LifeGameSession({userId,storage,assetBase = import.meta.env.BASE_URL+'a
   const [activity,setActivity]=useState<string[]>([])
   const [panel,setPanel]=useState<Panel>('status')
   const [detail,setDetail]=useState<string|null>(null)
-  const [menu,setMenu]=useState(false)
   const [confirm,setConfirm]=useState(false)
 
   function commit(update:(old:Save)=>Save) {
@@ -62,7 +61,6 @@ function LifeGameSession({userId,storage,assetBase = import.meta.env.BASE_URL+'a
     })
   }
   function navigate(screen:Screen) {
-    setMenu(false)
     setDetail(null)
     setScreen(screen)
   }
@@ -106,9 +104,7 @@ function LifeGameSession({userId,storage,assetBase = import.meta.env.BASE_URL+'a
   useEffect(()=>{ root.current?.scrollIntoView?.({block:'start',behavior:'instant'}) },[viewKey])
 
   return <div ref={root} className={'life-undecided'+(save.settings.motion?'':' lu-no-motion')+(save.settings.text==='large'?' lu-large':'')}>
-    <Header go={()=>navigate('home')} home={screen==='home'} exit={onExit} settings={()=>setMenu(!menu)}/>
-    {menu&&<nav className="lu-header-menu" aria-label="빠른 메뉴">{([['collection','엔딩 도감'],['achievements','업적'],['history','인생 기록'],['settings','설정']] as const)
-      .map(([key,label])=><button className="lu-plain" key={key} onClick={()=>navigate(key)}>{label}</button>)}</nav>}
+    <Header go={()=>navigate('home')} home={screen==='home'} exit={onExit}/>
     {notice&&<div className="lu-notice" role="status"><span>{notice}</span><button className="lu-plain" onClick={()=>setNotice(undefined)}>닫기</button></div>}
     <main key={viewKey} className="lu-main">
       {screen==='home'&&<Home base={assetBase} save={save} start={begin} resume={()=>{onEnter?.();navigate('play')}} open={navigate}/>}

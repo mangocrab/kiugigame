@@ -1,4 +1,4 @@
-import { ArrowLeft, BookHeart, Bookmark, CalendarDays, Heart, Menu, Sparkles } from 'lucide-react'
+import { ArrowLeft, BookHeart, Bookmark, CalendarDays, Heart, Sparkles } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { stages } from '../game/config'
 import type { Stage } from '../game/types'
@@ -6,10 +6,11 @@ import type { Stage } from '../game/types'
 export function Brand({go}:{go:()=>void}) {
   return <button type="button" className="lu-brand" onClick={go} aria-label="인생미정 홈"><span className="lu-brand-icon"><BookHeart size={23}/></span><span>인생미정</span></button>
 }
-export function Header({go,home,exit,settings}:{go:()=>void;home:boolean;exit?:()=>void;settings:()=>void}) {
+export function Header({go,home,exit}:{go:()=>void;home:boolean;exit?:()=>void}) {
+  if (home && !exit) return null
   return <header className="lu-header"><div className="lu-header-inner">
-    <Brand go={go}/>
-    <div className="lu-header-right">{home ? <button type="button" className="lu-plain lu-header-settings" onClick={settings}><Menu size={17}/> 메뉴</button> :
+    {!home && <Brand go={go}/>}
+    <div className="lu-header-right">{!home &&
       <button type="button" className="lu-plain lu-header-settings" onClick={go}><ArrowLeft size={16}/> 메인 메뉴</button>}
       {exit && <button type="button" className="lu-plain" onClick={exit}>게임 나가기</button>}
     </div>
