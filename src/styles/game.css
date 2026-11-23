@@ -33,7 +33,6 @@
   .lu-header-inner { width: min(1240px, calc(100% - 64px)); min-height: 74px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .lu-brand, .lu-plain { border: 0; background: none; display: inline-flex; align-items: center; gap: 9px; min-height: 42px; padding: 4px 6px; }
   .lu-brand { padding-left: 0; font-size: 22px; font-weight: 850; letter-spacing: -.07em; }
-  .lu-brand-icon { display: grid; place-items: center; width: 40px; height: 40px; color: #a8516c; background: #fae9ee; border: 1px solid #f3dce4; border-radius: 13px; }
   .lu-plain { color: var(--muted); font-weight: 650; font-size: .875rem; border-radius: 8px; }
   .lu-plain:hover { color: var(--rose); }
   .lu-header-right { display: flex; align-items: center; gap: 10px; }
@@ -80,7 +79,6 @@
   .lu-setup { max-width: 945px; text-align: center; }
   .lu-section-head { margin: 0 0 24px; }
   .lu-section-head h1, .lu-event-head h1, .lu-period h1 { font-size: clamp(1.85rem, 4.2vw, 2.8rem); line-height: 1.22; font-weight: 820; letter-spacing: -.075em; }
-  .lu-section-head .lu-kicker { margin-bottom: 11px; }
   .lu-kicker { color: var(--rose-dark); font-weight: 760; font-size: .875rem; display: inline-flex; align-items: center; gap: 7px; }
   .lu-section-sub, .lu-setup-note, .lu-period p { margin-top: 9px; color: var(--muted); }
   .lu-character-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin: 12px auto 16px; max-width: 560px; }
@@ -119,8 +117,6 @@
   .lu-sidebar { display: grid; gap: 13px; }
   .lu-period { padding: 21px 23px; margin-bottom: 13px; border: 1px solid #eadde2; border-radius: 17px; background: linear-gradient(120deg,#fff5f5,#f4eef7); display: flex; align-items: center; justify-content: space-between; gap: 15px; }
   .lu-period > svg { color: #b2718e; }
-  .lu-period h1 { margin-top: 9px; }
-  .lu-time { display: inline-flex; align-items: center; gap: 6px; color: #805769; background: #f9eef2; border: 1px solid #efdce4; border-radius: 24px; padding: 4px 9px; line-height: 1.3; font-size: .8125rem; font-weight: 700; }
   .lu-activities { padding: 20px; }
   .lu-row-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 13px; }
   .lu-row-head > h2 { font-size: 1.2rem; letter-spacing: -.045em; }
@@ -175,8 +171,6 @@
   .lu-log li p { margin-top: 2px; font-size: .875rem; color: var(--muted); }
   .lu-event { overflow: hidden; }
   .lu-event-head { padding: 18px 24px; }
-  .lu-event-head .lu-kicker { margin-bottom: 3px; }
-  .lu-event-head .lu-time { margin-top: 9px; }
   .lu-event-head .lu-section-head { margin-bottom: 0; }
   .lu-event-art { position: relative; }
   .lu-event-art > .lu-picture:first-child { width: 100%; aspect-ratio: 16/9; }
@@ -231,8 +225,6 @@
   .lu-history-list small, .lu-history-list p, .lu-history-list button > span:last-child { color: var(--muted); font-size: .875rem; }
   .lu-history-list strong { display: block; }
   .lu-record-art { aspect-ratio: 16/9; border-radius: 14px; border: 1px solid var(--line); }
-  .lu-ending-art { position: relative; }
-  .lu-ending-art > .lu-time { position: absolute; bottom: 10px; left: 10px; }
   .lu-record-box { padding: 17px; margin-top: 12px; }
   .lu-record-box h2 { font-size: 1.16rem; letter-spacing: -.04em; display: flex; align-items: center; gap: 7px; }
   .lu-record-box h2 svg { color: #a25173; }

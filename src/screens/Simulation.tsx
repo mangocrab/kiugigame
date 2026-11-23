@@ -1,7 +1,7 @@
 import { Activity as Pulse, BookOpen, BriefcaseBusiness, CalendarDays, Check, Coffee, Dumbbell, GraduationCap, Heart, House, Laptop, Lightbulb, NotebookPen, Palette, Sparkles, Users } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { Picture, Scene } from '../components/Art'
-import { Empty, Progress, SectionHead, TimeLabel } from '../components/ui'
+import { Empty, Progress, SectionHead } from '../components/ui'
 import { npcs } from '../data/activities'
 import { portraitArt } from '../data/art'
 import { acquiredById, traitById } from '../data/traits'
@@ -59,7 +59,7 @@ export function Dashboard({base,life,selected,toggle,advance,panel,setPanel,chil
     <div className="lu-dashboard-grid">
       <div className="lu-play-column">
         {children ?? <>
-          <div className="lu-period"><div><TimeLabel>{time.label}</TimeLabel><h1>오늘은 무엇을 할까요?</h1><p>이번 기간에 할 활동을 최대 {stages[life.stage].slots}개 선택하세요.</p></div><CalendarDays size={38}/></div>
+          <div className="lu-period"><div><h1>오늘은 무엇을 할까요?</h1><p>이번 기간에 할 활동을 최대 {stages[life.stage].slots}개 선택하세요.</p></div><CalendarDays size={38}/></div>
           <section className="lu-panel lu-activities">
             <div className="lu-row-head"><h2>생활 활동</h2><span aria-live="polite">{selected.length} / {stages[life.stage].slots} 선택</span></div>
             <div className="lu-action-grid">{availableActivities(life).map(activity=>{
@@ -101,9 +101,8 @@ export function Dashboard({base,life,selected,toggle,advance,panel,setPanel,chil
 }
 
 export function EventScreen({base,life,event,choose}:{base:string;life:Life;event:Event;choose:(event:string,choice:string)=>void}) {
-  const time = calendar(life)
   return <section className="lu-panel lu-event">
-    <div className="lu-event-head"><span className="lu-kicker"><Sparkles size={15}/>{event.category==='고정' ? (event.importance<3?'정기 일정':'인생의 순간') : event.category+' 사건'}</span><h1>{event.title}</h1><TimeLabel>{time.label}</TimeLabel></div>
+    <div className="lu-event-head"><h1>{event.title}</h1></div>
     <Scene base={base} scene={event.art} gender={life.gender} stage={life.stage} id={event.id}/>
     <div className="lu-event-body"><p>{event.description}</p>
       <div className="lu-decisions">{event.choices.map((choice,index)=>{
@@ -122,7 +121,7 @@ export function OutcomeScreen({base,life,outcome,next,summary=false}:{base:strin
   const recorded = life.log.at(-1)
   const art: Record<Life['stage'],'home'|'elementary'|'classroom'|'campus'|'lab'> = {early:'home',elementary:'elementary',middle:'classroom',high:'classroom',college:'campus',graduate:'lab'}
   return <section className="lu-panel lu-event lu-outcome" aria-live="polite">
-    <div className="lu-event-head"><span className="lu-kicker"><Check size={16}/>{summary?'생활 활동 결과':'선택 결과'}</span><h1>{outcome.title}</h1><TimeLabel>{calendar(life).label}</TimeLabel></div>
+    <div className="lu-event-head"><h1>{outcome.title}</h1></div>
     <Scene base={base} scene={art[life.stage]} gender={life.gender} stage={life.stage} id={summary?'activity':recorded?.id ?? 'result'}/>
     <div className="lu-event-body"><p>{outcome.text}</p>
       <div className="lu-changes">{outcome.changes.map((line,index)=><span key={index}>{line}</span>)}</div>
@@ -134,7 +133,7 @@ export function OutcomeScreen({base,life,outcome,next,summary=false}:{base:strin
 export function CareerSelection({life,base,choose}:{life:Life;base:string;choose:(id:string)=>void}) {
   const careerList=careerOptions(life)
   return <section className="lu-panel lu-event">
-    <div className="lu-event-head"><SectionHead tag="최종 진로" title="당신이 고를 다음 장" sub="지금까지의 경험으로 시작할 수 있는 일입니다."/></div>
+    <div className="lu-event-head"><SectionHead title="당신이 고를 다음 장" sub="지금까지의 경험으로 시작할 수 있는 일입니다."/></div>
     <Scene base={base} scene="street" id="career" gender={life.gender} stage={life.stage}/>
     <div className="lu-event-body lu-decisions">{careerList.map((career,index)=><button onClick={()=>choose(career.id)} key={career.id}>
       <span><BriefcaseBusiness size={18}/></span><strong>{career.title}<small>{career.description}</small></strong>{index===0 && career.score>0 && <small>적합도 1순위</small>}

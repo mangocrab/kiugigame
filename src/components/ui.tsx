@@ -1,23 +1,22 @@
-import { ArrowLeft, BookHeart, Bookmark, CalendarDays, Heart, Menu, Sparkles } from 'lucide-react'
+import { ArrowLeft, Bookmark, Menu } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { stages } from '../game/config'
 import type { Stage } from '../game/types'
 
-export function Brand({go,showIcon=true}:{go:()=>void;showIcon?:boolean}) {
-  return <button type="button" className="lu-brand" onClick={go} aria-label="인생미정 홈">{showIcon && <span className="lu-brand-icon"><BookHeart size={23}/></span>}<span>인생미정</span></button>
+export function Brand({go}:{go:()=>void}) {
+  return <button type="button" className="lu-brand" onClick={go} aria-label="인생미정 홈">인생미정</button>
 }
 export function Header({go,home,exit,settings}:{go:()=>void;home:boolean;exit?:()=>void;settings:()=>void}) {
   return <header className="lu-header"><div className="lu-header-inner">
-    <Brand go={go} showIcon={!home}/>
+    <Brand go={go}/>
     <div className="lu-header-right">{home ? <button type="button" className="lu-plain lu-header-settings" onClick={settings}><Menu size={17}/> 메뉴</button> :
       <button type="button" className="lu-plain lu-header-settings" onClick={go}><ArrowLeft size={16}/> 메인 메뉴</button>}
       {exit && <button type="button" className="lu-plain" onClick={exit}>게임 나가기</button>}
     </div>
   </div></header>
 }
-export function SectionHead({tag,title,sub,icon='spark'}:{tag?:string;title:string;sub?:string;icon?:'spark'|'book'|'heart'}) {
-  const Icon = icon==='book'?Bookmark:icon==='heart'?Heart:Sparkles
-  return <div className="lu-section-head">{tag&&<p className="lu-kicker"><Icon size={15}/>{tag}</p>}<h1>{title}</h1>{sub&&<p className="lu-section-sub">{sub}</p>}</div>
+export function SectionHead({title,sub}:{title:string;sub?:string}) {
+  return <div className="lu-section-head"><h1>{title}</h1>{sub&&<p className="lu-section-sub">{sub}</p>}</div>
 }
 export function Progress({stage,tick}:{stage:Stage;tick:number}) {
   return <div className="lu-progress">
@@ -27,4 +26,3 @@ export function Progress({stage,tick}:{stage:Stage;tick:number}) {
   </div>
 }
 export function Empty({children}:{children:ReactNode}) { return <div className="lu-empty"><Bookmark size={25}/><p>{children}</p></div> }
-export function TimeLabel({children}:{children:ReactNode}) { return <span className="lu-time"><CalendarDays size={15}/>{children}</span> }
