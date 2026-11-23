@@ -44,16 +44,14 @@
   .lu-notice { width: min(1240px, calc(100% - 48px)); margin: 14px auto 0; padding: 4px 12px; border: 1px solid #edccd8; border-radius: 10px; background: #fff1f6; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: .875rem; }
   .lu-main { width: min(1240px, calc(100% - 64px)); margin: 0 auto; padding: 27px 0 44px; animation: lu-appear .21s ease-out; }
   :scope.lu-no-motion .lu-main { animation: none; }
-  :scope.lu-large .lu-hero-description, :scope.lu-large .lu-event-body > p, :scope.lu-large .lu-record-box > p,
+  :scope.lu-large .lu-event-body > p, :scope.lu-large .lu-record-box > p,
   :scope.lu-large .lu-activity small, :scope.lu-large .lu-decisions button strong, :scope.lu-large .lu-log p { font-size: 1.13rem; }
   .lu-hero { position: relative; isolation: isolate; display: flex; align-items: center; min-height: clamp(460px, 43.5vw, 598px); overflow: hidden; border-radius: 25px; border: 1px solid #e5d3d0; color: #fffaf6; background: #775367 center 52% / cover no-repeat; box-shadow: 0 14px 37px #66506222; }
   .lu-hero::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, #23172ce8, #302135c7 29%, #33213953 58%, transparent 80%), linear-gradient(0deg, #291a346b, transparent 47%); }
   .lu-hero-content { padding: 45px clamp(34px, 6.4vw, 93px); }
-  .lu-hero-chip { display: inline-flex; gap: 8px; align-items: center; background: #ffffff16; border: 1px solid #fff4ec52; padding: 6px 11px; border-radius: 24px; color: #ffede4; font-size: .875rem; font-weight: 680; }
   .lu-hero h1 { margin: 7px 0 12px; font-family: 'Noto Serif KR', 'KoPub Batang', 'Batang', Georgia, serif; font-weight: 800; line-height: 1.18; letter-spacing: -.09em; font-size: clamp(65px, 8.6vw, 128px); text-shadow: 0 3px 28px #2f1d4255; }
   .lu-hero h1 span { color: #f4acb1; margin-left: .07em; }
   .lu-hero-tagline { font-size: clamp(1.1rem,2.35vw,1.78rem); font-weight: 720; letter-spacing: -.055em; color: #fff7ef; }
-  .lu-hero-description { margin-top: 13px; color: #f7e4e4; font-size: 1.01rem; line-height: 1.72; }
   .lu-hero-actions, .lu-setup-actions { display: flex; flex-wrap: wrap; gap: 11px; }
   .lu-hero-actions { margin-top: 30px; }
   .lu-button { min-height: 48px; min-width: 115px; padding: 10px 19px; border-radius: 11px; border: 1px solid transparent; font-size: 1rem; font-weight: 770; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: background .16s, border-color .16s, transform .16s; }
@@ -76,13 +74,8 @@
   .lu-tile-achievements .lu-tile-icon { color: #896526; background: #fbf0db; }
   .lu-tile-history .lu-tile-icon { color: #6c587f; background: #f0eaf8; }
   .lu-tile-settings .lu-tile-icon { color: #53726d; background: #e7f1ee; }
-  .lu-tile-copy { display: grid; gap: 1px; }
-  .lu-tile-copy strong { font-size: 1rem; letter-spacing: -.035em; }
-  .lu-tile-copy small { font-size: .8125rem; color: var(--muted); }
+  .lu-home-link strong { font-size: 1rem; letter-spacing: -.035em; }
   .lu-tile-chevron { color: #aa91a2; }
-  .lu-footer { display: flex; align-items: center; justify-content: center; gap: 9px; color: var(--muted); margin-top: 24px; font-size: .8125rem; }
-  .lu-footer svg { color: #a05e78; }
-  .lu-footer-dot { width: 4px; height: 4px; background: #cfa8b8; border-radius: 50%; }
   .lu-setup, .lu-archive { margin: auto; padding: 18px 0 28px; }
   .lu-setup { max-width: 945px; text-align: center; }
   .lu-section-head { margin: 0 0 24px; }
@@ -294,15 +287,13 @@
     .lu-hero h1 { font-size: clamp(57px,17vw,78px); }
     .lu-mobile-break { display: inline; }
     .lu-hero-tagline { font-size: 1.14rem; line-height: 1.38; }
-    .lu-hero-description { font-size: .875rem; }
     .lu-hero-actions .lu-button { min-width: 105px; padding-inline: 11px; }
     .lu-home-links { gap: 7px; margin-top: 9px; }
     .lu-home-link { grid-template-columns: auto minmax(0,1fr); gap: 7px; padding: 8px; min-height: 64px; }
     .lu-tile-icon { width: 34px; height: 34px; }
     .lu-tile-icon svg { width: 18px; }
     .lu-tile-chevron { display: none; }
-    .lu-tile-copy strong { font-size: .9rem; }
-    .lu-tile-copy small { font-size: .75rem; }
+    .lu-home-link strong { font-size: .9rem; }
     .lu-collection-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; }
     .lu-collection-copy { padding: 7px; }
     .lu-achievements-grid,.lu-ending-grid { grid-template-columns: minmax(0,1fr); }

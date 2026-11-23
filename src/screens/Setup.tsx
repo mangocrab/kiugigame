@@ -8,7 +8,7 @@ import type { Gender, Stat, Trait } from '../game/types'
 
 export function CharacterCreation({base,gender,select,next,back}:{base:string;gender:Gender;select:(gender:Gender)=>void;next:()=>void;back:()=>void}) {
   return <section className="lu-setup">
-    <SectionHead tag="캐릭터 생성" title="이야기의 주인공" sub="당신의 이야기를 살아갈 주인공을 선택하세요."/>
+    <SectionHead title="이야기의 주인공" sub="당신의 이야기를 살아갈 주인공을 선택하세요."/>
     <div className="lu-character-grid">{(['male','female'] as const).map(key=>
       <button key={key} className={'lu-character-card '+(gender===key?'lu-selected':'')} aria-pressed={gender===key} onClick={()=>select(key)}>
         <Picture key={key} base={base} path={portraitArt(key,'high')} alt={key==='male'?'남성 주인공 미리보기':'여성 주인공 미리보기'}/>
@@ -22,8 +22,8 @@ export function CharacterCreation({base,gender,select,next,back}:{base:string;ge
 export function TraitSelection({selected,cards,pick,back}:{selected:Trait[];cards:Trait[];pick:(trait:Trait)=>void;back:()=>void}) {
   const icons = {common:Leaf,rare:Star,legendary:Sparkles}
   return <section className="lu-setup">
-    <SectionHead tag={'선천적 특성 · '+(selected.length+1)+' / 3'} title="타고난 작은 가능성" sub="세 가지 특성 중 하나를 고르세요. 같은 희귀도를 여러 번 선택할 수 있어요."/>
-    <div className="lu-rounds" aria-label="특성 선택 진행 상태">{[0,1,2].map(index=><span key={index} className={index<=selected.length?'lu-active':''}/>)}</div>
+    <SectionHead title="타고난 작은 가능성" sub="세 가지 특성 중 하나를 고르세요. 같은 희귀도를 여러 번 선택할 수 있어요."/>
+    <div className="lu-rounds" role="img" aria-label={`특성 선택 ${selected.length+1} / 3`}>{[0,1,2].map(index=><span key={index} className={index<=selected.length?'lu-active':''}/>)}</div>
     <div className="lu-trait-grid">{cards.map(trait=>{
       const Icon = icons[trait.rarity]
       const boosted = activities.filter(activity=>trait.activityRates[activity.id]!==undefined)
@@ -39,7 +39,7 @@ export function TraitSelection({selected,cards,pick,back}:{selected:Trait[];card
           {trait.bond ? <li>긍정적 관계 변화 +{trait.bond}</li> : null}
           {trait.field && <li>{fieldNames[trait.field]} 직업 적합도 보정</li>}
         </ul>
-        <button className="lu-button lu-secondary" onClick={()=>pick(trait)}>{trait.title} 선택</button>
+        <button className="lu-button lu-secondary" aria-label={`${trait.title} 선택`} onClick={()=>pick(trait)}>선택</button>
       </article>
     })}</div>
     <div className="lu-chosen">{selected.map(trait=><span className={'lu-rarity-'+trait.rarity} key={trait.id}><Check size={15}/>{trait.title}</span>)}</div>
