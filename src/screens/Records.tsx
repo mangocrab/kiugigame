@@ -1,8 +1,7 @@
 import { ArrowLeft, BookOpen, BriefcaseBusiness, CalendarDays, Check, Heart, History, LockKeyhole, Settings2, Sparkles, Trophy } from 'lucide-react'
-import { Picture } from '../components/Art'
+import { EndingPicture } from '../components/Art'
 import { Empty, SectionHead } from '../components/ui'
 import { achievements } from '../data/achievements'
-import { endingArt } from '../data/art'
 import { careerById, careers } from '../data/careers'
 import { fieldNames, majors } from '../game/config'
 import { educationNames, importantBonds } from '../game/journal'
@@ -17,14 +16,15 @@ export function Collection({base,runs,detail,select}:{base:string;runs:Run[];det
   if (current && matches.length) return <section className="lu-archive lu-narrow">
     <button className="lu-plain lu-back" onClick={()=>select(null)}><ArrowLeft size={17}/> 엔딩 도감</button>
     <SectionHead title={current.title} sub={current.description}/>
-    <Picture className="lu-record-art" base={base} path={endingArt(current.art)} fallback="backgrounds/street.jpg"/>
+    <EndingPicture className="lu-record-art" base={base} career={current.id} gender={matches[0].gender} group={current.art} alt={current.title+' 엔딩 일러스트'}/>
     <div className="lu-panel lu-record-box"><h2>최초 발견 기록</h2><p>{matches.at(-1)?.number}회차 · {formatDate(matches.at(-1)!.date)} · 총 {matches.length}회 달성</p><p>{matches.at(-1)?.story.at(-1)}</p></div>
   </section>
   return <section className="lu-archive">
     <SectionHead title="어떤 미래를 만났나요?" sub={found.size+' / '+careers.length+'개 직업을 발견했어요.'}/>
     <div className="lu-collection-grid">{careers.map(career=>{
-      const count = runs.filter(run=>run.career===career.id).length
-      const children = <><div className="lu-collection-visual">{count?<Picture base={base} path={endingArt(career.art)} fallback="backgrounds/street.jpg"/>:<LockKeyhole size={25}/>}</div>
+      const discoveries = runs.filter(run=>run.career===career.id)
+      const count = discoveries.length
+      const children = <><div className="lu-collection-visual">{count?<EndingPicture base={base} career={career.id} gender={discoveries[0].gender} group={career.art} loading="lazy"/>:<LockKeyhole size={25}/>}</div>
         <div className="lu-collection-copy"><small>{fieldNames[career.field]}</small><strong>{count?career.title:'미발견 직업'}</strong>{count>0 && <span>{count}회 달성</span>}</div></>
       return count ? <button className="lu-collection-card" key={career.id} onClick={()=>select(career.id)}>{children}</button> :
         <div className="lu-collection-card lu-locked" key={career.id}>{children}</div>
@@ -64,7 +64,7 @@ export function RunStory({base,run,back,newGame,returnHome}:{base:string;run:Run
   return <section className="lu-archive lu-narrow lu-ending">
     {back&&<button className="lu-plain lu-back" onClick={back}><ArrowLeft size={16}/> 인생 기록</button>}
     <SectionHead title={career?.title ?? '직업 엔딩'} sub={career?.description}/>
-    <Picture base={base} path={endingArt(career?.art ?? 'practical')} fallback="backgrounds/street.jpg" className="lu-record-art"/>
+    <EndingPicture base={base} career={run.career} gender={run.gender} group={career?.art} className="lu-record-art" alt={career ? career.title+' 엔딩 일러스트' : '엔딩 일러스트'}/>
     <div className="lu-panel lu-record-box"><div className="lu-row-head"><h2><BookOpen size={20}/> 당신이 살아온 이야기</h2><span>{run.number}회차</span></div>
       {run.story.map((paragraph,index)=><p key={index}>{paragraph}</p>)}
     </div>
