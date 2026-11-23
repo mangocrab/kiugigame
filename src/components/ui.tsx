@@ -4,7 +4,7 @@ import { stages } from '../game/config'
 import type { Stage } from '../game/types'
 
 export function Brand({go}:{go:()=>void}) {
-  return <button type="button" className="lu-brand" onClick={go} aria-label="인생미정 홈">인생미정</button>
+  return <button type="button" className="lu-brand" onClick={go} aria-label="인생미정 홈"><span>인생미정<span className="lu-brand-dot">.</span></span></button>
 }
 export function Header({go,home,exit,settings}:{go:()=>void;home:boolean;exit?:()=>void;settings:()=>void}) {
   return <header className="lu-header"><div className="lu-header-inner">
